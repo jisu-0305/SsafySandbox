@@ -30,7 +30,7 @@
 
 - ERD
 
-  - ![ERD_IMG]() 각자 ERD 짜서 이미지 넣기
+  - ![ERD_IMG](/assets/img/01.erd_img.png) 
 
 - CRUD
 
