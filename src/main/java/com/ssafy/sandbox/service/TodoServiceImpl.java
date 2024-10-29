@@ -1,5 +1,6 @@
 package com.ssafy.sandbox.service;
 
+import com.ssafy.sandbox.dto.TodoListResponseDto;
 import com.ssafy.sandbox.dto.TodoRequestDto;
 import com.ssafy.sandbox.dto.TodoResponseDto;
 import com.ssafy.sandbox.entity.Todo;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -30,12 +30,11 @@ public class TodoServiceImpl implements TodoService {
     // Read
     @Transactional(readOnly = true)
     @Override
-    public List<TodoResponseDto> getAllTodos() {
-        return todoRepository.findAll().stream()
-                .map(todo -> new TodoResponseDto(todo.getId(), todo.getContent(), todo.isCompleted()))
-                .collect(Collectors.toList());
+    public TodoListResponseDto getAllTodos() {
+        List<Todo> todos = todoRepository.findAll();
+        return new TodoListResponseDto(todos);
     }
-
+    
     // Update
     @Transactional
     @Override

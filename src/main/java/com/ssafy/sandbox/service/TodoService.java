@@ -2,6 +2,7 @@ package com.ssafy.sandbox.service;
 
 import java.util.List;
 
+import com.ssafy.sandbox.dto.TodoListResponseDto;
 import com.ssafy.sandbox.dto.TodoResponseDto;
 import com.ssafy.sandbox.dto.TodoRequestDto;
 
@@ -10,7 +11,7 @@ public interface TodoService {
     TodoResponseDto createTodo(TodoRequestDto requestDto);
 
     // Read
-    List<TodoResponseDto> getAllTodos();
+    TodoListResponseDto getAllTodos();
 
     // Update
     TodoResponseDto updateTodoStatus(Long id);

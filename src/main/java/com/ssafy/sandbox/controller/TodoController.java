@@ -31,9 +31,7 @@ public class TodoController {
     // Read
     @GetMapping
     public ResponseEntity<TodoListResponseDto> getAllTodos() {
-        TodoListResponseDto todos = new TodoListResponseDto(todoService.getAllTodos());
-        log.info("log: Get {} todos", todos.getTodos().size());
-        return new ResponseEntity<>(todos, HttpStatus.OK);
+        return new ResponseEntity<>(todoService.getAllTodos(), HttpStatus.OK);
     }
 
     // Update
