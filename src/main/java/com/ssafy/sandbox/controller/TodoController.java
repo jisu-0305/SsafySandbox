@@ -38,15 +38,15 @@ public class TodoController {
 
     // Update
     @PatchMapping("/{todoId}")
-    public ResponseEntity<TodoResponseDto> updateTodoStatus(@PathVariable Long todoId, @RequestBody boolean completed) {
-        TodoResponseDto responseDto = todoService.updateTodoStatus(todoId, completed);
+    public ResponseEntity<TodoResponseDto> updateTodoStatus(@PathVariable("todoId") Long todoId) {
+        TodoResponseDto responseDto = todoService.updateTodoStatus(todoId);
         log.info("log: update todo id: {} , status: {}", todoId, responseDto.isCompleted());
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     // Delete
     @DeleteMapping("/{todoId}")
-    public ResponseEntity<String> deleteTodoById(@PathVariable Long todoId) {
+    public ResponseEntity<String> deleteTodoById(@PathVariable("todoId") Long todoId) {
         todoService.deleteTodoById(todoId);
         log.info("log: delete todo id: {}", todoId);
         return new ResponseEntity<>("삭제가 완료되었습니다.", HttpStatus.OK);

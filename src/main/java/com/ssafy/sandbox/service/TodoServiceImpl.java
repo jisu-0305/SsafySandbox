@@ -39,10 +39,10 @@ public class TodoServiceImpl implements TodoService {
     // Update
     @Transactional
     @Override
-    public TodoResponseDto updateTodoStatus(Long id, boolean completed) {
+    public TodoResponseDto updateTodoStatus(Long id) {
         Todo todo = todoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Todo not found"));
-        todo.setCompleted(completed);
+        todo.setCompleted(!todo.isCompleted());  // 상태 반전: true -> false, false -> true
         todoRepository.save(todo);
         return new TodoResponseDto(todo.getId(), todo.getContent(), todo.isCompleted());
     }

@@ -13,7 +13,7 @@ public interface TodoService {
     List<TodoResponseDto> getAllTodos();
 
     // Update
-    TodoResponseDto updateTodoStatus(Long id, boolean completed);
+    TodoResponseDto updateTodoStatus(Long id);
 
     // Delete
     void deleteTodoById(Long id);
