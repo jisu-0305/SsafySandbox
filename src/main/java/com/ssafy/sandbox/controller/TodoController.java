@@ -10,9 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@CrossOrigin(origins = "https://ssafysandbox.vercel.app")
 @Slf4j
 @RestController
 @RequestMapping("/todos")
