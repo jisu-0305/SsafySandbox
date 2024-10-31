@@ -7,4 +7,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TodoRequestDto {
     private String content;
+    //dto -> entity
 }

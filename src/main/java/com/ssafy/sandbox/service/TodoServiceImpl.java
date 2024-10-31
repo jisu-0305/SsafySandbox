@@ -20,9 +20,7 @@ public class TodoServiceImpl implements TodoService {
     @Transactional
     @Override
     public TodoResponseDto createTodo(TodoRequestDto requestDto) {
-        Todo todo = new Todo();
-        todo.setContent(requestDto.getContent());
-        todo.setCompleted(false);
+        Todo todo = Todo.of(requestDto.getContent());
         Todo savedTodo = todoRepository.save(todo);
         return new TodoResponseDto(savedTodo.getId(), savedTodo.getContent(), savedTodo.isCompleted());
     }
@@ -41,7 +39,7 @@ public class TodoServiceImpl implements TodoService {
     public TodoResponseDto updateTodoStatus(Long id) {
         Todo todo = todoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Todo not found"));
-        todo.setCompleted(!todo.isCompleted());  // 상태 반전: true -> false, false -> true
+        todo.toggleCompleted();  // 상태 반전: true -> false, false -> true
         todoRepository.save(todo);
         return new TodoResponseDto(todo.getId(), todo.getContent(), todo.isCompleted());
     }
