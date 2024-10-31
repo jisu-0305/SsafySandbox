@@ -1,5 +1,6 @@
 package com.ssafy.sandbox.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,5 +8,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TodoRequestDto {
     private String content;
-    //dto -> entity
 }

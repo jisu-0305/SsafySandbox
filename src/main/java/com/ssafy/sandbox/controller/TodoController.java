@@ -2,7 +2,6 @@ package com.ssafy.sandbox.controller;
 
 import com.ssafy.sandbox.dto.TodoListResponseDto;
 import com.ssafy.sandbox.dto.TodoRequestDto;
-import com.ssafy.sandbox.dto.TodoResponseDto;
 import com.ssafy.sandbox.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,10 +18,10 @@ public class TodoController {
 
     // Create
     @PostMapping
-    public ResponseEntity<TodoResponseDto> createTodo(@RequestBody TodoRequestDto requestDto) {
-        TodoResponseDto responseDto = todoService.createTodo(requestDto);
-        log.info("log: Create {} todo", responseDto);
-        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+    public ResponseEntity<Long> createTodo(@RequestBody TodoRequestDto requestDto) {
+        long id = todoService.createTodo(requestDto);
+        log.info("logInfo: create success");
+        return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
 
     // Read
@@ -33,17 +32,17 @@ public class TodoController {
 
     // Update
     @PatchMapping("/{todoId}")
-    public ResponseEntity<TodoResponseDto> updateTodoStatus(@PathVariable("todoId") Long todoId) {
-        TodoResponseDto responseDto = todoService.updateTodoStatus(todoId);
-        log.info("log: update todo id: {} , status: {}", todoId, responseDto.isCompleted());
-        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    public ResponseEntity<Void> updateTodoStatus(@PathVariable("todoId") Long todoId) {
+        todoService.updateTodoStatus(todoId);
+        log.info("logInfo: update success");
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     // Delete
     @DeleteMapping("/{todoId}")
-    public ResponseEntity<String> deleteTodoById(@PathVariable("todoId") Long todoId) {
+    public ResponseEntity<Void> deleteTodoById(@PathVariable("todoId") Long todoId) {
         todoService.deleteTodoById(todoId);
-        log.info("log: delete todo id: {}", todoId);
-        return new ResponseEntity<>("삭제가 완료되었습니다.", HttpStatus.OK);
+        log.info("logInfo: delete success");
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
