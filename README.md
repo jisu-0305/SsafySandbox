@@ -1,4 +1,4 @@
-# SSAFY SANDBOX 백엔드 프르젝트
+# SSAFY SANDBOX 백엔드 프로젝트
 
 ## 1주차 CRUD
 
