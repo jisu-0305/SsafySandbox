@@ -1,6 +1,5 @@
 package com.ssafy.sandbox.todo.dto;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

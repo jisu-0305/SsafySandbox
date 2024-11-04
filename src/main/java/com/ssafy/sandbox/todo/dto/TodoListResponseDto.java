@@ -1,6 +1,6 @@
 package com.ssafy.sandbox.todo.dto;
 
-import com.ssafy.sandbox.todo.entity.Todo;
+import com.ssafy.sandbox.todo.model.Todo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

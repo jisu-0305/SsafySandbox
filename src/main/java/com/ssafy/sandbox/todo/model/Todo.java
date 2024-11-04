@@ -1,11 +1,11 @@
-package com.ssafy.sandbox.todo.entity;
+package com.ssafy.sandbox.todo.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "todos") //테이블 이름 지정
+@Table(name = "todos")
 @Getter
 @NoArgsConstructor
 public class Todo {

@@ -2,7 +2,7 @@ package com.ssafy.sandbox.todo.service;
 
 import com.ssafy.sandbox.todo.dto.TodoListResponseDto;
 import com.ssafy.sandbox.todo.dto.TodoRequestDto;
-import com.ssafy.sandbox.todo.entity.Todo;
+import com.ssafy.sandbox.todo.model.Todo;
 import com.ssafy.sandbox.todo.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
