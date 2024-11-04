@@ -1,10 +1,10 @@
 package com.ssafy.sandbox.article.controller;
 
+import com.ssafy.sandbox.article.dto.ArticleCursorResponseDto;
 import com.ssafy.sandbox.article.dto.ArticleRequestDto;
-import com.ssafy.sandbox.article.dto.ArticleResponseDto;
+import com.ssafy.sandbox.article.dto.ArticleOffsetResponseDto;
 import com.ssafy.sandbox.article.service.ArticleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,18 +17,21 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @GetMapping("/paging/offset")
-    public ResponseEntity<ArticleResponseDto> getArticlesByOffset(
+    public ResponseEntity<ArticleOffsetResponseDto> getArticlesByOffset(
             @RequestParam(name = "size", defaultValue = "10", required = false) int size,
             @RequestParam(name = "page", defaultValue = "0", required = false) int page) {
-
-        ArticleResponseDto response = articleService.getArticlesWithPagination(size, page);
-
+        ArticleOffsetResponseDto response = articleService.getArticlesWithPagination(size, page);
         return ResponseEntity.ok(response);
     }
 
-    //    @GetMapping("/paging/cursor")
-//    public ResponseEntity<String> getArticlesByCursor() {
-//   }
+    @GetMapping("/paging/cursor")
+    public ResponseEntity<ArticleCursorResponseDto> getArticlesByCursor(
+            @RequestParam(name = "cursorId", required = false) Long cursorId,
+            @RequestParam(name = "size", defaultValue = "10") int size) {
+
+        ArticleCursorResponseDto response = articleService.getArticlesWithCursor(cursorId, size);
+        return ResponseEntity.ok(response);
+    }
     @PostMapping("/make")
     public ResponseEntity<Void> createArticles(@RequestBody ArticleRequestDto articleRequestDto) {
         articleService.createArticles(articleRequestDto.getArticles());

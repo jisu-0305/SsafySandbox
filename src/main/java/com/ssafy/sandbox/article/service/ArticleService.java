@@ -1,13 +1,15 @@
 package com.ssafy.sandbox.article.service;
 
-import com.ssafy.sandbox.article.dto.ArticleResponseDto;
+import com.ssafy.sandbox.article.dto.ArticleCursorResponseDto;
+import com.ssafy.sandbox.article.dto.ArticleOffsetResponseDto;
 import com.ssafy.sandbox.article.model.Article;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
 public interface ArticleService {
-    ArticleResponseDto getArticlesWithPagination(int size, int page);
+    ArticleOffsetResponseDto getArticlesWithPagination(int size, int page);
+
+    ArticleCursorResponseDto getArticlesWithCursor(Long cursorId, int size);
 
     void createArticles(List<Article> articles);
 }

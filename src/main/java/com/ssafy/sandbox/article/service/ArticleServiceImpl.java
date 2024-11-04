@@ -1,7 +1,8 @@
 package com.ssafy.sandbox.article.service;
 
+import com.ssafy.sandbox.article.dto.ArticleCursorResponseDto;
 import com.ssafy.sandbox.article.dto.ArticleDto;
-import com.ssafy.sandbox.article.dto.ArticleResponseDto;
+import com.ssafy.sandbox.article.dto.ArticleOffsetResponseDto;
 import com.ssafy.sandbox.article.model.Article;
 import com.ssafy.sandbox.article.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Transactional(readOnly = true)
-    public ArticleResponseDto getArticlesWithPagination(int size, int page) {
+    public ArticleOffsetResponseDto getArticlesWithPagination(int size, int page) {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "createdAt"));
 
         Page<ArticleDto> articlePage = articleRepository.findAll(pageable)
@@ -32,10 +33,18 @@ public class ArticleServiceImpl implements ArticleService {
                         article.getCreatedAt()));
 
         // Page<ArticleDto> -> ArticleResponseDto
-        return new ArticleResponseDto(
+        return new ArticleOffsetResponseDto(
                 articlePage.getTotalPages(),
                 articlePage.getContent()
         );
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ArticleCursorResponseDto getArticlesWithCursor(Long cursorId, int size) {
+
+//        return new ArticleCursorResponseDto(lastId, articleDtos);
+        return null;
     }
 
     @Override
