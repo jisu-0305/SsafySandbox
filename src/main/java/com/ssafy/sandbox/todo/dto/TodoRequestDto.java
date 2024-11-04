@@ -1,4 +1,4 @@
-package com.ssafy.sandbox.dto;
+package com.ssafy.sandbox.todo.dto;
 
 import lombok.Data;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.ssafy.sandbox.entity;
+package com.ssafy.sandbox.todo.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
