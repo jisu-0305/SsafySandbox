@@ -13,9 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,16 +27,9 @@ public class ArticleServiceImpl implements ArticleService {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "createdAt"));
 
         Page<ArticleDto> articlePage = articleRepository.findAll(pageable)
-                .map(article -> new ArticleDto(
-                        article.getId(),
-                        article.getTitle(),
-                        article.getCreatedAt()));
+                .map(Article::toDto);
 
-        // Page<ArticleDto> -> ArticleResponseDto
-        return new ArticleOffsetResponseDto(
-                articlePage.getTotalPages(),
-                articlePage.getContent()
-        );
+        return ArticleOffsetResponseDto.from(articlePage);
     }
 
     @Override
@@ -53,14 +44,7 @@ public class ArticleServiceImpl implements ArticleService {
             articles = articleRepository.findArticlesNextPage(cursorId, pageable);
         }
 
-        Long lastId = articles.isEmpty() ? null : articles.get(articles.size() - 1).getId();
-
-        List<ArticleDto> articleDtoList = new ArrayList<>();
-        for (Article article : articles) {
-            articleDtoList.add(article.toDto());
-        }
-
-        return new ArticleCursorResponseDto(lastId, articleDtoList);
+        return ArticleCursorResponseDto.from(articles);
     }
 
     @Override
