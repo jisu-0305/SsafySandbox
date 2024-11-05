@@ -5,10 +5,12 @@ import com.ssafy.sandbox.article.dto.ArticleRequestDto;
 import com.ssafy.sandbox.article.dto.ArticleOffsetResponseDto;
 import com.ssafy.sandbox.article.service.ArticleService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/articles")
 @RequiredArgsConstructor
@@ -28,7 +30,7 @@ public class ArticleController {
     public ResponseEntity<ArticleCursorResponseDto> getArticlesByCursor(
             @RequestParam(name = "cursorId", required = false) Long cursorId,
             @RequestParam(name = "size", defaultValue = "10") int size) {
-
+        log.info("log id: " + cursorId + ", size: " + size);
         ArticleCursorResponseDto response = articleService.getArticlesWithCursor(cursorId, size);
         return ResponseEntity.ok(response);
     }

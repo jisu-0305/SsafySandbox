@@ -13,7 +13,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -42,9 +44,23 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     @Transactional(readOnly = true)
     public ArticleCursorResponseDto getArticlesWithCursor(Long cursorId, int size) {
+        Pageable pageable = PageRequest.of(0, size);
+        List<Article> articles;
 
-//        return new ArticleCursorResponseDto(lastId, articleDtos);
-        return null;
+        if (cursorId == 0) {
+            articles = articleRepository.findTopArticlesByOrderByCreatedAtDesc(pageable);
+        } else {
+            articles = articleRepository.findArticlesNextPage(cursorId, pageable);
+        }
+
+        Long lastId = articles.isEmpty() ? null : articles.get(articles.size() - 1).getId();
+
+        List<ArticleDto> articleDtoList = new ArrayList<>();
+        for (Article article : articles) {
+            articleDtoList.add(article.toDto());
+        }
+
+        return new ArticleCursorResponseDto(lastId, articleDtoList);
     }
 
     @Override

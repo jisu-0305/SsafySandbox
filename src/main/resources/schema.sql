@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS sandbox;
-USE sandbox;
+USE sandbox;e
 
 CREATE TABLE todos (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
