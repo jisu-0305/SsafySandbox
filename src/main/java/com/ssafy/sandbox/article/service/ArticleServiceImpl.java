@@ -27,7 +27,7 @@ public class ArticleServiceImpl implements ArticleService {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "createdAt"));
 
         Page<ArticleDto> articlePage = articleRepository.findAll(pageable)
-                .map(Article::toDto);
+                .map(ArticleDto::fromEntity);
 
         return ArticleOffsetResponseDto.from(articlePage);
     }

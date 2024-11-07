@@ -1,6 +1,5 @@
 package com.ssafy.sandbox.article.model;
 
-import com.ssafy.sandbox.article.dto.ArticleDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,6 +18,7 @@ public class Article {
     private long id;
     @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private Instant createdAt;
 
     private Article(long id, String title, Instant createdAt) {
@@ -29,9 +29,5 @@ public class Article {
 
     public static Article of(long id, String title, Instant createdAt){
         return new Article(id, title, createdAt);
-    }
-
-    public ArticleDto toDto() {
-        return new ArticleDto(this.id, this.title, this.createdAt);
     }
 }
