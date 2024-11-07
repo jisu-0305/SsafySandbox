@@ -20,8 +20,8 @@ public class ArticleController {
 
     @GetMapping("/paging/offset")
     public ResponseEntity<ArticleOffsetResponseDto> getArticlesByOffset(
-            @RequestParam(name = "size", defaultValue = "10", required = false) int size,
-            @RequestParam(name = "page", defaultValue = "0", required = false) int page) {
+            @RequestParam(name = "size", defaultValue = "10") int size,
+            @RequestParam(name = "page", defaultValue = "0") int page) {
         ArticleOffsetResponseDto response = articleService.getArticlesWithPagination(size, page);
         return ResponseEntity.ok(response);
     }
@@ -37,6 +37,6 @@ public class ArticleController {
     @PostMapping("/make")
     public ResponseEntity<Void> createArticles(@RequestBody ArticleRequestDto articleRequestDto) {
         articleService.createArticles(articleRequestDto.getArticles());
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

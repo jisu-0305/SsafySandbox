@@ -43,7 +43,6 @@ public class ArticleServiceImpl implements ArticleService {
         } else {
             articles = articleRepository.findArticlesNextPage(cursorId, pageable);
         }
-
         return ArticleCursorResponseDto.from(articles);
     }
 

@@ -6,8 +6,6 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 
 @Getter
 @AllArgsConstructor
@@ -20,7 +18,7 @@ public class ArticleCursorResponseDto {
         List<ArticleDto> articleDtoList = new ArrayList<>();
 
         for (Article article : articles) {
-            articleDtoList.add(article.toDto());
+            articleDtoList.add(ArticleDto.fromEntity(article));
         }
         return new ArticleCursorResponseDto(lastId, articleDtoList);
     }
