@@ -1,8 +1,8 @@
-package com.ssafy.sandbox.controller;
+package com.ssafy.sandbox.todo.controller;
 
-import com.ssafy.sandbox.dto.TodoListResponseDto;
-import com.ssafy.sandbox.dto.TodoRequestDto;
-import com.ssafy.sandbox.service.TodoService;
+import com.ssafy.sandbox.todo.dto.TodoListResponseDto;
+import com.ssafy.sandbox.todo.dto.TodoRequestDto;
+import com.ssafy.sandbox.todo.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

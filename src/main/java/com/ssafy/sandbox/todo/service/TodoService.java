@@ -1,8 +1,8 @@
-package com.ssafy.sandbox.service;
+package com.ssafy.sandbox.todo.service;
 
 
-import com.ssafy.sandbox.dto.TodoListResponseDto;
-import com.ssafy.sandbox.dto.TodoRequestDto;
+import com.ssafy.sandbox.todo.dto.TodoListResponseDto;
+import com.ssafy.sandbox.todo.dto.TodoRequestDto;
 
 public interface TodoService {
     // Create
