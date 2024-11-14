@@ -39,7 +39,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public EmailVerificationResponseDto verifyCode(EmailCodeRequestDto requestDto) {
+    public EmailVerificationResponseDto verifyEmailCode(EmailCodeRequestDto requestDto) {
         String storedCode = redisTemplate.opsForValue().get(requestDto.getEmail());
 
         if (storedCode != null && storedCode.equals(requestDto.getAuthentication())) {

@@ -8,5 +8,5 @@ import com.ssafy.sandbox.email.dto.EmailVerificationResponseDto;
 public interface EmailService {
     EmailSendResponseDto sendEmailVerification(EmailVerificationRequestDto requestDto);
 
-    EmailVerificationResponseDto verifyCode(EmailCodeRequestDto requestDto);
+    EmailVerificationResponseDto verifyEmailCode(EmailCodeRequestDto requestDto);
 }

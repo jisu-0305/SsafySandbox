@@ -26,8 +26,8 @@ public class EmailController {
     }
 
     @PostMapping("/authentication")
-    public ResponseEntity<EmailVerificationResponseDto> verifyCode(@RequestBody EmailCodeRequestDto emailCodeRequestDto) {
-        EmailVerificationResponseDto emailVerificationResponseDto = emailService.verifyCode(emailCodeRequestDto);
+    public ResponseEntity<EmailVerificationResponseDto> verifyEmailCode(@RequestBody EmailCodeRequestDto emailCodeRequestDto) {
+        EmailVerificationResponseDto emailVerificationResponseDto = emailService.verifyEmailCode(emailCodeRequestDto);
         return ResponseEntity.ok(emailVerificationResponseDto);
     }
 }
