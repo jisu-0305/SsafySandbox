@@ -19,17 +19,15 @@ public class EmailController {
 
     private final EmailService emailService;
 
-    // 인증 코드 전송 요청
     @PostMapping
     public ResponseEntity<EmailSendResponseDto> sendEmailVerification(@RequestBody EmailVerificationRequestDto emailVerificationRequestDto) {
-        EmailSendResponseDto responseDto = emailService.sendEmailVerification(emailVerificationRequestDto);
-        return ResponseEntity.ok(responseDto);
+        EmailSendResponseDto emailSendResponseDto = emailService.sendEmailVerification(emailVerificationRequestDto);
+        return ResponseEntity.ok(emailSendResponseDto);
     }
 
-    // 인증 코드 검증 요청
     @PostMapping("/authentication")
     public ResponseEntity<EmailVerificationResponseDto> verifyCode(@RequestBody EmailCodeRequestDto emailCodeRequestDto) {
-        EmailVerificationResponseDto responseDto = emailService.verifyCode(emailCodeRequestDto);
-        return ResponseEntity.ok(responseDto);
+        EmailVerificationResponseDto emailVerificationResponseDto = emailService.verifyCode(emailCodeRequestDto);
+        return ResponseEntity.ok(emailVerificationResponseDto);
     }
 }
