@@ -31,6 +31,12 @@ dependencies {
 
 	//MySQL JDBC 드라이버 의존성
 	implementation 'mysql:mysql-connector-java:8.0.33'
+
+	//Mail 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	//Redis 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 }
 
 tasks.named('test') {
